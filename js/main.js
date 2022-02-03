@@ -1,6 +1,7 @@
 /* DOM SELECTORS */
 const canvas = document.querySelector("#canvas");
 document.addEventListener("keydown", movementHandler);
+const movementDisplay = document.querySelector("#movement");
 // document.addEventListener('keydown', movementHandler) // stretch goals might be useful
 
 /* GAME STATE/CANVAS RENDERING STUFF */
@@ -54,10 +55,23 @@ const hero = {
     },
 };
 
-const ogre = {};
+const ogre = {
+    x: 250,
+    y: 250,
+    width: 40,
+    height: 50,
+    color: 'green',
+    render: () => {
+        ctx.fillStyle = ogre.color
+        ctx.fillRect(ogre.x, ogre.y, ogre.width, ogre.height)
+    }
+};
 
 function movementHandler(e) {
     console.log(e);
+    const speed = 10;
+    // movementDisplay.innerText = "X:" + hero.x + " " + "Y:" + hero.y;
+    movementDisplay.innerText = `X:${hero.x} Y:${hero.y}`
     // conditional logic based on what key was pressed
     if (e.key === "a" || e.key === "ArrowLeft") hero.x -= speed;
     if (e.key === "d" || e.key === "ArrowRight") hero.x += speed;
@@ -65,11 +79,14 @@ function movementHandler(e) {
     if (e.key === "w" || e.key === "ArrowDown") hero.y -= speed;
 }
 
-function gameLoop(){
+function gameLoop() {
     // clear canvas and then render
-    // clear the canvas from left to bottom right to up
+    // clear the canvas from top left bottom right
+    ctx.clearRect(0,0, canvas.width, canvas.height)
+
     // render all gameplay elements (hero and ogre)
     hero.render();
+    ogre.render();
     // gameplay logic -- win conditions ???
     // collision detections
-};
+}
