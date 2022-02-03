@@ -43,29 +43,47 @@ function drawBox(x, y, width, height, color) {
 
 // data and functions to update the game element
 // encapslate methods and data that the mothods use together -- OOP ENCAPSULATION
-const hero = {
-    x: 10,
-    y: 10,
-    width: 20,
-    height: 20,
-    color: "hotpink",
-    render: () => {
-        ctx.fillStyle = hero.color;
-        ctx.fillRect(hero.x, hero.y, hero.width, hero.height);
-    },
+// const hero = {
+//     x: 10,
+//     y: 10,
+//     width: 20,
+//     height: 20,
+//     color: "hotpink",
+//     render: () => {
+//         ctx.fillStyle = hero.color;
+//         ctx.fillRect(hero.x, hero.y, hero.width, hero.height);
+//     },
+// };
+
+// const ogre = {
+//     x: 250,
+//     y: 250,
+//     width: 40,
+//     height: 50,
+//     color: 'green',
+//     render: () => {
+//         ctx.fillStyle = ogre.color
+//         ctx.fillRect(ogre.x, ogre.y, ogre.width, ogre.height)
+//     }
+// };
+
+// use the Crawler class to make canvas crawlers -- heroes or enemies
+class Crawler {
+    constructor(x, y, width, height, color) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+    render = () => {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    };
 };
 
-const ogre = {
-    x: 250,
-    y: 250,
-    width: 40,
-    height: 50,
-    color: 'green',
-    render: () => {
-        ctx.fillStyle = ogre.color
-        ctx.fillRect(ogre.x, ogre.y, ogre.width, ogre.height)
-    }
-};
+const hero = new Crawler(10,10,20,20,'hotpink');
+const ogre = new Crawler(250,250,40,50,'green');
 
 function movementHandler(e) {
     console.log(e);
