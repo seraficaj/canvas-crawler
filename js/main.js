@@ -97,6 +97,18 @@ function movementHandler(e) {
     if (e.key === "w" || e.key === "ArrowDown") hero.y -= speed;
 }
 
+function detectHit() {
+    // four conditional checks - one for every side of both boxes
+    // hero right ogre left
+    const ogreLeft = hero.x + hero.width >= ogre.x;
+    // hero left ogre right
+    const ogreRight =  hero.x <= ogre.x + ogre.width;
+    // hero bottom ogre top
+    const ogreTop = hero.y + hero.height >= ogre.y;
+    // hero top ogre bottom
+    const ogreBottom = hero.y <= ogre.y + ogre.height;
+}
+
 function gameLoop() {
     // clear canvas and then render
     // clear the canvas from top left bottom right
@@ -107,4 +119,5 @@ function gameLoop() {
     ogre.render();
     // gameplay logic -- win conditions ???
     // collision detections
+    detectHit();
 }
